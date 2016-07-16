@@ -1,10 +1,15 @@
 #!/bin/bash
-# Raspberry PI 2 ArchLinux Setup
-# Tested on a 8Gb micro sd card
-# This will save time when you're starting from scratch
 
-# Display all commands
-set -x
+# ************************************************ #
+#    archlinux-raspberry-pi-2-install-script.sh    #
+#              written by Jens Ackou               #
+#                                                  #
+#  install arch linux on a raspberry pi 2 sd card  #
+#         tested on a 8Gb micro sd card            #
+# ************************************************ #
+
+# Display all commands (DEBUG)
+# set -x
 
 # Cleanup if nessecary
 sudo umount boot
@@ -50,11 +55,14 @@ sudo mount /dev/sdb2 root # mount root partition
 
 wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz # download latest archlinux for rpi2
 sudo bsdtar -xpf ArchLinuxARM-rpi-2-latest.tar.gz -C root # extract all contents to root directory
+
+# Move command seemed to have problems with moving files between different partitions
+# sudo mv root/boot/* boot # move all contents in extracted boot folder to boot directory
 sudo cp --no-preserve=mode,ownership root/boot/* boot
 sudo rm -r root/boot/*
 
-#sudo mv root/boot/* boot # move all contents in extracted boot folder to boot directory
 
+# Disable showing all commands
 set +x
 
 echo "Put the sd card into your raspberry pi and see if the login menu appears."
