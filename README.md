@@ -1,10 +1,10 @@
-# archlinux-raspberry-pi-2-install-script
+# archlinux-raspberry-pi-2-install
+---
 Clean installation of Archlinux on your RPI2 sdcard
 
-  Tested on Ubuntu 14.04
+Log into your linux machine, insert your sd card and enter this single command in your terminal.
+*Tested on Ubuntu 14.04*
 
-1. Download the script
-2. chmod +x <file> (to make it executable)
-3. . <file> (to run the script)
+`bash <(curl -s https://ackoujens.github.io/archlinux-raspberry-pi-2-install/script.sh)`
 
-Leave me any feedback [here](https://github.com/ackoujens/archlinux-raspberry-pi-2-install-script/issues) if you have any issues or questions.
+Leave me any feedback [here](https://github.com/ackoujens/archlinux-raspberry-pi-2-install/issues) if you have any issues or questions.
