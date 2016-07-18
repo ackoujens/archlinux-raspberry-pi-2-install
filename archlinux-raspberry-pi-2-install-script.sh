@@ -1,5 +1,7 @@
 #!/bin/bash
+clear
 
+echo '
 # ************************************************ #
 #    archlinux-raspberry-pi-2-install-script.sh    #
 #              written by Jens Ackou               #
@@ -7,24 +9,43 @@
 #  install arch linux on a raspberry pi 2 sd card  #
 #         tested on a 8Gb micro sd card            #
 # ************************************************ #
+! Press CTRL + C anytime to abort the shell script !
+'
 
 # Display all commands (DEBUG)
 # set -x
 
 # Cleanup if nessecary
+echo '
+Mount Cleanup
+-------------'
 sudo umount boot
 sudo umount root
-sudo rmdir boot
-sudo rmdir root
+echo 'DONE
+'
+
+echo '
+Removing Junk Files
+-------------------'
+sudo rm -r boot
+sudo rm -r root
 sudo rm ArchLinuxARM-rpi-2-latest.tar.gz
+echo 'DONE
+'
 
 # Display mounted volumes
+echo '
+All Mounted Volumes
+-------------------'
 lsblk
-
-# Pick a mounted volume
-echo "Choose the location of your sd card (ex: /dev/sdb)"
+echo "Enter the location of your sd card (ex: /dev/sdb):"
 read uservolume
+echo '
+'
 
+echo '
+Repartitioning SD card
+----------------------'
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo fdisk $uservolume
   o # clear the in memory partition table
   n # new partition
@@ -43,26 +64,61 @@ sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo fdisk $uservolume
   w # write the partition table
   q # and we're done
 EOF
-
 partprobe
+echo 'DONE
+'
+
+echo '
+Creating Filesystem
+-------------------'
+echo '[boot] /dev/sdb1 => vfat'
 sudo mkfs.vfat /dev/sdb1 # create filesystem
 mkdir boot # create boot directory
 sudo mount /dev/sdb1 boot # mount boot partition
 
+echo '[root] /dev/sdb2 => ext4'
 sudo mkfs.ext4 # create filesystem
 mkdir root # create root directory
 sudo mount /dev/sdb2 root # mount root partition
+echo 'DONE
+'
 
+echo '
+Downloading Arch Linux ARM RPI2
+-------------------------------'
 wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz # download latest archlinux for rpi2
-sudo bsdtar -xpf ArchLinuxARM-rpi-2-latest.tar.gz -C root # extract all contents to root directory
+echo 'DONE
+'
 
+echo '
+Extracting Downloaded Package
+-----------------------------'
+echo 'Extracting to root ...'
+sudo bsdtar -xpf ArchLinuxARM-rpi-2-latest.tar.gz -C root # extract all contents to root directory
+echo 'DONE
+'
+
+echo '
+Moving Boot Files
+-----------------'
 # Move command seemed to have problems with moving files between different partitions
 # sudo mv root/boot/* boot # move all contents in extracted boot folder to boot directory
+echo 'Copying root/boot/* -> boot'
 sudo cp --no-preserve=mode,ownership root/boot/* boot
+echo 'Removing root/boot/* files'
 sudo rm -r root/boot/*
+echo 'DONE
+'
 
+echo '
+Removing Junk Files
+-------------------'
+sudo rm ArchLinuxARM-rpi-2-latest.tar.gz
+echo 'DONE
+'
 
 # Disable showing all commands
 set +x
 
-echo "Put the sd card into your raspberry pi and see if the login menu appears."
+echo '
++++ Put the sd card into your Raspberry PI2 and see if everything is working. Enjoy your Arch Distro !'
