@@ -3,7 +3,7 @@ clear
 
 echo '
 # ************************************************ #
-#    archlinux-raspberry-pi-2-install-script.sh    #
+#      archlinux-raspberry-pi-2-install-script     #
 #              written by Jens Ackou               #
 #                                                  #
 #  install arch linux on a raspberry pi 2 sd card  #
