@@ -117,7 +117,7 @@
  */
  var clipboard = new Clipboard('.script', {
 		 text: function() {
-				 return 'bash <(curl -s https://ackoujens.github.io/archlinux-raspberry-pi-2-install/script.sh)';
+				 return 'bash <(curl -s https://raw.githubusercontent.com/ackoujens/archlinux-raspberry-pi-2-install/master/script.sh)';
 		 }
  });
 
