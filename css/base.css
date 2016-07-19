@@ -86,7 +86,7 @@ code, kbd, pre, samp {
 	font-family: monospace, monospace;
 	font-size: 1em;
 }
-button, input, optgroup, select, textarea {
+button, input, optgroup, select, textarea, .button {
 	color: inherit;
 	font: inherit;
 	margin: 0;
@@ -173,7 +173,7 @@ body {
 	-webkit-overflow-scrolling: touch;
 	-webkit-text-size-adjust: none;
 }
-body, input, button {
+body, input, button, .button{
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 }

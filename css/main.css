@@ -981,15 +981,19 @@ header .logo a {
 	background: rgba(255, 255, 255, 0.1);
 	width: 100%;
 }
-.main-content .search .text-field {
+.main-content .search .text-field{
 	padding: 5px;
 	padding-left: 20px;
 	background: rgba(255, 255, 255, 0.1);
 	color: #FFFFFF
 }
-.main-content .search script {
-	background: rgba(255, 255, 255, 0.1);
-	width: 20%;
+.main-content .search .script{
+	width: 380px;
+	display: -webkit-inline-box;
+	text-align: -webkit-center;
+}
+a:hover {
+	color: #c25d02 !important;
 }
 #main-page-content footer {
 	position: absolute;

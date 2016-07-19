@@ -121,6 +121,12 @@
 		 }
  });
 
+ function change()
+{
+    var elem = document.getElementById("script");
+    elem.innerText = "It's copied !";
+}
+
 
 /*!-----------------------------------------------------------------------------
  * Vegas - Fullscreen Backgrounds and Slideshows.
