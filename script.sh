@@ -71,15 +71,15 @@ echo 'DONE
 echo '
 Creating Filesystem
 -------------------'
-echo '[boot] /dev/sdb1 => vfat'
-sudo mkfs.vfat /dev/sdb1 # create filesystem
+echo "[boot] ${uservolume}1 => vfat"
+sudo mkfs.vfat ${uservolume}1 # create filesystem
 mkdir boot # create boot directory
-sudo mount /dev/sdb1 boot # mount boot partition
+sudo mount ${uservolume}1 boot # mount boot partition
 
-echo '[root] /dev/sdb2 => ext4'
+echo "[root] ${uservolume}2 => ext4"
 sudo mkfs.ext4 # create filesystem
 mkdir root # create root directory
-sudo mount /dev/sdb2 root # mount root partition
+sudo mount ${uservolume}2 root # mount root partition
 echo 'DONE
 '
 
