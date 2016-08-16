@@ -43,6 +43,7 @@ read uservolume
 echo '
 '
 
+# TODO SWAP
 echo '
 Repartitioning SD card
 ----------------------'
